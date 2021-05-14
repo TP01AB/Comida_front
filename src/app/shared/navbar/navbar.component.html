@@ -1,1 +1,26 @@
-<p>navbar works!</p>
+<header class="header-area overlay bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <a alt="pagina de inicio" class="" routerLink="/" alt="Logotipo">
+                <!--*ngIf="router.url === '/'"-->
+                <img src="/assets/logo.png" alt="Logotipo" height="60em" class="d-inline-block align-top">
+            </a>
+
+            <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+				<span class="menu-icon-bar"></span>
+				<span class="menu-icon-bar"></span>
+				<span class="menu-icon-bar"></span>
+			</button>
+
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+
+                    <li><a id=" iniciar" class="nav-item nav-link" routerLink="/iniciar">Iniciar</a></li>
+
+                    <li><a id="registro" class="nav-item nav-link" routerLink="/registrarse">Registrarse</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
