@@ -1,1 +1,18 @@
-<p>register works!</p>
+<div class="login">
+    <form [formGroup]="FormRegister" (ngSubmit)="onSubmit()" class="custom-form" method="post">
+        <h1>Registro</h1>
+        <input type="email" id="email" name="email" placeholder="Introduce tu E-mail" required="required" formControlName="email" class="form-control" />
+        <div *ngIf="submitted && form.email.errors">
+            <div>El correo: </div>
+            <div *ngIf="form.email.errors.required">No puede estar vacío</div>
+            <div *ngIf="form.email.errors.pattern">Dirección de correo no valida</div>
+        </div>
+        <input type="password" name="password" id="password" placeholder="Password" required="required" formControlName="password" class="form-control" />
+        <div *ngIf="submitted && form.password.errors">
+            <div>La contraseña: </div>
+            <div *ngIf="form.password.errors.required">No puede estar vacío</div>
+            <div *ngIf="form.password.errors?.min">Longuitud mínima 8 caracteres</div>
+        </div>
+        <button type="submit">Registrar</button>
+    </form>
+</div>
