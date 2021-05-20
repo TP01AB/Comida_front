@@ -13,13 +13,14 @@ export class LoginComponent implements OnInit {
   FormLogin: FormGroup;
   message: any;
   submitted = false;
-  isEmail = /\S+@\S+\.\S+/;
   user: any;
   constructor(private loginService: LoginService, private router: Router, private formBuilder: FormBuilder) {
+
     this.FormLogin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
-      password: ['', [Validators.required, Validators.min(8)]]
+      email: ['',Validators.compose( [Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
+
     this.user = {
       token: "",
       user_id: "",
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   onReset() {
     this.submitted = false;
     this.FormLogin.reset();
@@ -77,6 +79,13 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
   get form() { return this.FormLogin.controls; }
 
+
+  isValidField(field: string): string {
+    const validatedField = this.FormLogin.get(field);
+    return (validatedField!.valid && validatedField!.touched)
+      ? 'is-invalid' : validatedField!.touched ? 'is-valid' : '';
+  }
 }
