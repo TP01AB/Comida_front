@@ -13,7 +13,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public login = (email: string, password: string) => {
-    const url = environment.api + "login";
+    const url = environment.api + 'login';
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
