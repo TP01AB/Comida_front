@@ -1,18 +1,38 @@
-<div class="login">
-    <form [formGroup]="FormLogin" (ngSubmit)="onSubmit()" class="custom-form" method="post">
-        <h1>Login</h1>
-        <input type="email" id="email" name="email" placeholder="Introduce tu E-mail" required="required" formControlName="email" class="form-control" />
-        <div *ngIf="submitted && form.email.errors">
+<form [formGroup]="FormLogin" (ngSubmit)="onSubmit()" class="custom-form mx-auto" method="post">
+    <h1>Login</h1>
+    <label class="label" for="email">E-mail</label>
+    <div class="control">
+        <input class="input" type="email" formControlName="email" />
+        <div class="text-danger" *ngIf="FormLogin.get('email')!.hasError('required') && FormLogin.get('email')!.touched ">
+            Es obligatorio un email
+        </div>
+        <div class="text-danger" *ngIf="FormLogin.get('email')!.hasError('email') && FormLogin.get('email')!.touched ">
+            Debes introducir un e-mail valido: Xxxxx@xxx.xx
+        </div>
+    </div>
+    <label class="label" for="password">password</label>
+    <div class="control">
+        <input class="input" type="password" formControlName="password" />
+        <div class="text-danger" *ngIf="FormLogin.get('password')!.hasError('required') && FormLogin.get('password')!.touched">
+            Es obligatorio una contraseña
+        </div>
+        <div class="text-danger" *ngIf="FormLogin.get('password')!.hasError('minlength') && FormLogin.get('password')!.touched">
+            La contraseña tiene que tener minimo de 8 caracteres.
+        </div>
+    </div>
+    <!--
+          <input type="email" id="email" name="email" placeholder="Introduce tu E-mail" formControlName="email" class="form-control" />
+        <div class="invalid-feedback">
             <div>El correo: </div>
-            <div *ngIf="form.email.errors.required">No puede estar vacío</div>
-            <div *ngIf="form.email.errors.pattern">Dirección de correo no valida</div>
+            <div *ngIf="FormLogin.get('email')!.errors?.required">No puede estar vacío</div>
+            <div *ngIf="FormLogin.get('email')!.errors?.email">Dirección de correo no valida</div>
         </div>
-        <input type="password" name="password" id="password" placeholder="Password" required="required" formControlName="password" class="form-control" />
-        <div *ngIf="submitted && form.password.errors">
+        <input type="password" name="password" id="password" placeholder="Password" [class]="isValidField('password')" formControlName="password" class="form-control" />
+        <div class="invalid-feedback">
             <div>La contraseña: </div>
-            <div *ngIf="form.password.errors.required">No puede estar vacío</div>
-            <div *ngIf="form.password.errors?.min">Longuitud mínima 8 caracteres</div>
+            <div *ngIf="FormLogin.get('password')!.errors?.required">No puede estar vacío</div>
+            <div *ngIf="FormLogin.get('password')!.errors?.minlength">Longuitud mínima 8 caracteres</div>
         </div>
-        <button type="submit">Iniciar</button>
-    </form>
-</div>
+      -->
+    <button [disabled]="FormLogin.invalid" type="submit">Iniciar</button>
+</form>

@@ -13,14 +13,15 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public login = (email: string, password: string) => {
-    const url = environment.api + "login";
+    const url = environment.api + 'login';
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
     return this.http.post(url, { 'email': email, 'password': password }, { headers: headers });
-  }
+  };
+
   public isUserSigned(): boolean {
     let iniciado = false;
     let aux: any | null;
