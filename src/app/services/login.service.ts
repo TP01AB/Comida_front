@@ -20,7 +20,8 @@ export class LoginService {
     });
 
     return this.http.post(url, { 'email': email, 'password': password }, { headers: headers });
-  }
+  };
+
   public isUserSigned(): boolean {
     let iniciado = false;
     let aux: any | null;

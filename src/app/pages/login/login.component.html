@@ -1,5 +1,5 @@
-<div class="login">
-    <form [formGroup]="FormLogin" (ngSubmit)="onSubmit()" class="custom-form" method="post">
+<div class="">
+    <form [formGroup]="FormLogin" (ngSubmit)="onSubmit()" class="custom-form mx-auto" method="post">
         <h1>Login</h1>
         <input type="email" id="email" name="email" placeholder="Introduce tu E-mail" required="required" formControlName="email" class="form-control" />
         <div *ngIf="submitted && form.email.errors">
