@@ -1,18 +1,117 @@
-<div class="login">
-    <form [formGroup]="FormRegister" (ngSubmit)="onSubmit()" class="custom-form" method="post">
-        <h1>Registro</h1>
-        <input type="email" id="email" name="email" placeholder="Introduce tu E-mail" required="required" formControlName="email" class="form-control" />
-        <div *ngIf="submitted && form.email.errors">
-            <div>El correo: </div>
-            <div *ngIf="form.email.errors.required">No puede estar vacío</div>
-            <div *ngIf="form.email.errors.pattern">Dirección de correo no valida</div>
+<form [formGroup]="FormRegister" (ngSubmit)="onSubmit()" class=" custom-form container" method="post ">
+    <h1 class="text-center">Registro</h1>
+    <hr>
+    <div class="row ">
+        <div class="control col-6 ">
+            <label class="label" for="email ">E-mail</label>
+            <input class="input" name="email " id="email" type="email" formControlName="email" />
+            <div class="text-danger col-6 " *ngIf="FormRegister.get( 'email')!.hasError( 'required') && FormRegister.get( 'email')!.touched ">
+                Campo obligatorio
+            </div>
+            <div class="text-danger col-6 " *ngIf="FormRegister.get( 'email')!.hasError( 'email') && FormRegister.get( 'email')!.touched ">
+                Debes introducir un e-mail valido: email@dominio.xx
+            </div>
         </div>
-        <input type="password" name="password" id="password" placeholder="Password" required="required" formControlName="password" class="form-control" />
-        <div *ngIf="submitted && form.password.errors">
-            <div>La contraseña: </div>
-            <div *ngIf="form.password.errors.required">No puede estar vacío</div>
-            <div *ngIf="form.password.errors?.min">Longuitud mínima 8 caracteres</div>
+        <div class="control col-6 ">
+            <label class="label " for="password">password</label>
+            <input class="input " name="password" id="password" type="password" formControlName="password" />
+            <div class="text-danger col-6 " *ngIf="FormRegister.get( 'password')!.hasError( 'required') && FormRegister.get( 'password')!.touched ">
+                Campo obligatorio
+            </div>
+            <div class="text-danger col-6 " *ngIf="FormRegister.get( 'password')!.hasError( 'minlength') && FormRegister.get( 'password')!.touched ">
+                La contraseña tiene que tener minimo de 8 caracteres.
+            </div>
         </div>
-        <button type="submit">Registrar</button>
-    </form>
-</div>
+    </div>
+    <div class="row ">
+        <div class="form-group col-4 ">
+            <label class="label " for="name ">Nombre</label>
+            <input class="input " name="name " id="name" type="text " formControlName="name" />
+            <div class="text-danger col-4 " *ngIf="FormRegister.get( 'name')!.hasError( 'required') && FormRegister.get( 'name')!.touched ">
+                Campo obligatorio
+            </div>
+            <div class="text-danger col-4 " *ngIf="FormRegister.get( 'name')!.hasError( 'pattern') && FormRegister.get( 'name')!.touched ">
+                Tu nombre debe empezar por mayuscula.
+            </div>
+        </div>
+        <div class="form-group col-5 ">
+            <label class="label" for="lastname">Apellidos</label>
+            <input class="input" name="lastname" id="lastname " type="text " formControlName="lastname" />
+            <div class="text-danger col-5 " *ngIf="FormRegister.get( 'lastname')!.hasError( 'required') && FormRegister.get( 'lastname')!.touched ">
+                Campo obligatorio
+            </div>
+        </div>
+        <div class="form-group col-3 ">
+            <label class="label " for="dni">DNI</label>
+            <input class="input " name="dni " id="dni " type="text " formControlName="dni" />
+            <div class="text-danger col-3 " *ngIf="FormRegister.get( 'dni')!.hasError( 'required') && FormRegister.get( 'dni')!.touched ">
+                Campo obligatorio
+            </div>
+            <div class="text-danger col-3 " *ngIf="FormRegister.get( 'dni')!.hasError( 'pattern') && FormRegister.get( 'dni')!.touched ">
+                Tu dni tiene que tener el siguiente formato 00000000X.
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="form-group col-3 ">
+            <label class="label" for="telefono ">Telefono</label>
+            <input class="input" name="telefono " id="telefono " type="text" formControlName="telefono" />
+            <div class="text-danger " *ngIf="FormRegister.get( 'telefono')!.hasError( 'required') && FormRegister.get( 'telefono')!.touched ">
+                Campo obligatorio
+            </div>
+            <div class="text-danger " *ngIf="FormRegister.get( 'telefono')!.hasError( 'pattern') && FormRegister.get( 'telefono')!.touched ">
+                Tu dni tiene que tener el siguiente formato 666666666.
+            </div>
+        </div>
+        <div class="form-group col-4 ">
+            <label class="label " for="cp ">Codigo postal</label>
+            <input class="input " name="cp " id="cp " type="text " formControlName="cp" />
+            <div class="text-danger " *ngIf="FormRegister.get( 'cp')!.hasError( 'required') && FormRegister.get( 'cp')!.touched ">
+                Campo obligatorio
+            </div>
+            <div class="text-danger " *ngIf="FormRegister.get( 'cp')!.hasError( 'pattern') && FormRegister.get( 'cp')!.touched ">
+                Formato obligatorio: 00000.
+            </div>
+        </div>
+        <div class="form-group col-4 ">
+            <label class="label " for="localidad ">Localidad</label>
+            <input class="input " name="localidad " id="localidad " type="text " formControlName="localidad" />
+            <div class="text-danger " *ngIf="FormRegister.get( 'localidad')!.hasError( 'required') && FormRegister.get( 'localidad')!.touched ">
+                Campo obligatorio
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6 ">
+            <label class="label " for="direccion ">Direccion</label>
+            <input class="input " name="direccion " id="direccion " type="text " formControlName="direccion" />
+            <div class="text-danger " *ngIf="FormRegister.get( 'direccion')!.hasError( 'required') && FormRegister.get( 'direccion')!.touched ">
+                Campo obligatorio
+            </div>
+        </div>
+        <div class="form-group col-6 ">
+            <label class="label " for="observacion">Aclaraciones para repartidor</label>
+            <input class="input " name="observacion" id="observacion" type="text " formControlName="observacion" />
+        </div>
+    </div>
+    <hr>
+    <div class="row mb-3 ">
+
+        <div class="form-row col-12 mx-auto ">
+            <div class="form-group col-10 col-sm-8 mx-auto ">
+                <label>Seleccione el tipo de usuario: </label>
+                <select name="opcion " class="form-control-sm ml-3" id="opcion" formControlName="opcion">
+                                        <option value="restaurante " >Restaurante</option>
+                                        <option value="repartidor ">Repartidor</option>
+                                        <option value="cliente ">Cliente</option>
+                </select>
+                <div class="text-danger " *ngIf="FormRegister.get( 'direccion')!.hasError( 'required') && FormRegister.get( 'direccion')!.touched ">
+                    Campo obligatorio
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button [disabled]="FormRegister.invalid " type="submit ">Registrar</button>
+</form>
