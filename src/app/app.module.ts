@@ -12,13 +12,18 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginService } from './services/login.service';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { RegisterService } from './services/register.service';
+import { AdminInicioComponent } from './pages/admin/admin-inicio/admin-inicio.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    VerifyEmailComponent,
+    AdminInicioComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { RegisterComponent } from './pages/register/register.component';
   ],
   providers: [
     LoginService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })
