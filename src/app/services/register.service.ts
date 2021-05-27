@@ -13,14 +13,14 @@ export class RegisterService {
   userId = null;
 
   constructor(private http: HttpClient) { }
-  public registerUser(jsonFather: string) {
+
+  public registrarUsuario(email: string, password: string, dni: string, name: string, lastname: string, phone: string, opcion:string) {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    console.log(jsonFather);
 
-    return this.http.post(environment.api + "register", jsonFather, { headers: headers });
+    return this.http.post(environment.api + "register", { 'email': email, 'password': password, 'dni': dni, 'name': name, 'lastname': lastname, 'phone': phone, 'opcion': opcion }, { headers: headers });
   }
 }

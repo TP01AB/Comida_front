@@ -23,21 +23,14 @@ export class RegisterComponent implements OnInit {
     this.initForm();
   }
 
-  onSubmit() { }
-
   initForm() {
-
     this.FormRegister = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', [Validators.required, Validators.minLength(8)]],
       dni: ['', [Validators.required, Validators.pattern(this.isDni)]],
       name: ['', [Validators.required, Validators.pattern(this.isName)]],
       lastname: ['', [Validators.required, Validators.pattern(this.isName)]],
-      telefono: ['', [Validators.required, Validators.pattern(this.isPhone)]],
-      cp: ['', [Validators.required, Validators.pattern(this.isCp)]],
-      localidad: ['', Validators.required],
-      direccion: ['', Validators.required],
-      birthday: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(this.isPhone)]],
       opcion: ['', Validators.required]
     });
   }
@@ -46,6 +39,32 @@ export class RegisterComponent implements OnInit {
     return (validatedField!.valid && validatedField!.touched)
       ? 'is-invalid' : validatedField!.touched ? 'is-valid' : '';
   }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.FormRegister.invalid) {
+      return;
+    }
+    let datosUsuario = this.FormRegister.value;
+    const email = datosUsuario.email;
+    const password = datosUsuario.password;
+    const dni = datosUsuario.dni;
+    const name = datosUsuario.name;
+    const lastname = datosUsuario.lastname;
+    const phone = datosUsuario.phone;
+    const opcion = datosUsuario.opcion;
+    this.registerUser.registrarUsuario(email, password, dni, name, lastname, phone, opcion).subscribe(
+      (response: any) => {
+        console.log("success!", response);
+        this.router.navigate(['/iniciar']);
+        this.message='Registro completado.'
+      },
+      (error) => {
+        console.log(error.message);
+      }
+    );
+  }
+
 
   get form() { return this.FormRegister.controls; }
 }
